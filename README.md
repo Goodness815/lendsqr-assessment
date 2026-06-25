@@ -71,7 +71,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
    ```
 
 4. **View the app:**
-   Open `http://localhost:5173` in your browser. You can click "Log in" to bypass the simulated login screen and view the dashboard.
+   Open `http://localhost:5173` in your browser. Since the authentication is simulated for this assessment, you can input **any email and password** into the login form and click "Log in" to access the dashboard.
 
 ## 🧪 Running Tests
 
