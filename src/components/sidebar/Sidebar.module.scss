@@ -63,7 +63,7 @@
   width: 100%;
   text-align: left;
 
-  svg {
+  .icon {
     flex-shrink: 0;
   }
 }
@@ -106,16 +106,19 @@
   border-bottom: none;
   text-align: left;
 
-  svg {
+  .icon {
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     opacity: 0.6;
+    transition: opacity 0.15s;
   }
 
   &:hover {
     background: rgba(57, 205, 204, 0.04);
     color: $primary;
 
-    svg {
+    .icon {
       opacity: 1;
     }
   }
@@ -126,7 +129,7 @@
     color: $primary;
     font-weight: 500;
 
-    svg {
+    .icon {
       opacity: 1;
     }
   }

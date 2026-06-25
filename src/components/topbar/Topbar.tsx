@@ -62,7 +62,7 @@ export default function Topbar({ sidebarOpen, onToggle }: TopbarProps) {
               <button className={s.dropdownItem} onClick={logout} data-testid="button-logout">
                 <LogOut size={16} /> Logout
               </button>
-              <div className={s.version}>v1.2.0</div>
+              <div className={s.version}>v1.0.0</div>
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import s from "./ActionMenu.module.scss";
 
-interface ActionMenuProps {
+type ActionMenuProps = {
   id: string;
   top: number;
   right: number;

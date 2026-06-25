@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import s from './ComingSoon.module.scss';
 
-interface ComingSoonProps {
+type ComingSoonProps = {
   title?: string;
 }
 

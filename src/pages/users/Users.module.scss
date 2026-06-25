@@ -62,7 +62,7 @@
 .statValue {
   font-family: $font-primary;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: $primary;
 }
 
@@ -70,6 +70,7 @@
   @include card;
   overflow: visible;
   position: relative;
+  z-index: 20;
   animation: fadeSlideUp 0.45s 0.15s ease both;
 }
 
@@ -160,6 +161,9 @@
   border-bottom: 1px solid rgba(33, 63, 125, 0.06);
   white-space: nowrap;
   vertical-align: middle;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tr {
@@ -218,6 +222,8 @@
 .tableScrollWrap {
   max-height: 50vh;
   overflow-y: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     width: 6px;

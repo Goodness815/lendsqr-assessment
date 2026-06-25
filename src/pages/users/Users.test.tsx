@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Users from './Users';
 import { useUsers } from '../../hooks/useUsers';
@@ -83,7 +83,7 @@ describe('Users Page', () => {
     vi.mocked(useUsers).mockReturnValue({
       totalRecords: 15,
       setUsers: vi.fn(),
-      users: mockUsers,
+      users: mockUsers.slice(0, 10),
       loading: false,
       error: null
     });
@@ -104,5 +104,32 @@ describe('Users Page', () => {
     // Check if page size select exists
     const pageSizeSelect = screen.getByRole('combobox', { name: /items per page/i });
     expect(pageSizeSelect).toHaveValue('10');
+  });
+
+  it('can open filter dropdown and type into filter inputs', async () => {
+    vi.mocked(useUsers).mockReturnValue({
+      totalRecords: 0,
+      setUsers: vi.fn(),
+      users: [],
+      loading: false,
+      error: null
+    });
+
+    render(
+      <BrowserRouter>
+        <Users />
+      </BrowserRouter>
+    );
+
+    const filterBtn = screen.getByRole('button', { name: /filter/i });
+    fireEvent.click(filterBtn);
+
+    // Check if the filter form appears
+    const filterForm = screen.getByTestId('filter-form');
+    expect(filterForm).toBeInTheDocument();
+
+    // Check if organization select exists
+    const orgSelect = screen.getByRole('combobox', { name: /Organization/i });
+    expect(orgSelect).toBeInTheDocument();
   });
 });

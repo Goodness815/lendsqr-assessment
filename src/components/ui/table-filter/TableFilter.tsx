@@ -10,14 +10,15 @@ export type FilterState = {
   status: string;
 };
 
-interface TableFilterProps {
+type TableFilterProps = {
+  organizations: string[];
   filters: FilterState;
   onChange: (filters: FilterState) => void;
   onFilter: () => void;
   onReset: () => void;
 }
 
-export function TableFilter({ filters, onChange, onFilter, onReset }: TableFilterProps) {
+export function TableFilter({ organizations, filters, onChange, onFilter, onReset }: TableFilterProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     onChange({ ...filters, [e.target.name]: e.target.value });
   };
@@ -44,9 +45,9 @@ export function TableFilter({ filters, onChange, onFilter, onReset }: TableFilte
             onChange={handleChange}
           >
             <option value="">Select</option>
-            <option value="Lendsqr">Lendsqr</option>
-            <option value="Irorun">Irorun</option>
-            <option value="Lendstar">Lendstar</option>
+            {organizations.map(org => (
+              <option key={org} value={org}>{org}</option>
+            ))}
           </select>
         </div>
 

@@ -205,7 +205,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   min-width: 160px;
-  padding: 8px 0;
   z-index: 200;
   animation: fadeSlideUp 0.2s ease both;
 }
@@ -232,12 +231,12 @@
 }
 
 .version {
-  padding: 12px 20px 4px;
+  padding: 5px 20px;
   font-family: $font-primary;
+  text-align: center;
   font-size: 12px;
   color: rgba(33, 63, 125, 0.5);
   border-top: 1px solid $border-color;
-  margin-top: 4px;
 }
 
 @keyframes fadeSlideUp {

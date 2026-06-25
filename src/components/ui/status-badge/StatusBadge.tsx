@@ -1,7 +1,7 @@
 import type { UserStatus } from "../../../types/user";
 import s from "./StatusBadge.module.scss";
 
-interface StatusBadgeProps {
+type StatusBadgeProps = {
   status: UserStatus;
   className?: string;
 }

@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import s from "./Pagination.module.scss";
 
-interface PaginationProps {
+type PaginationProps = {
   total: number;
   page: number;
   limit: number;

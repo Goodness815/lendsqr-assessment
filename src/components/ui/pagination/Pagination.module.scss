@@ -7,7 +7,11 @@
   flex-wrap: wrap;
   gap: 12px;
 
-  @include mobile { padding: 12px 16px; }
+  @include mobile {
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .pageInfo {
@@ -36,7 +40,10 @@
     cursor: pointer;
     outline: none;
     transition: background 0.15s;
-    &:hover { background: rgba(33, 63, 125, 0.15); }
+
+    &:hover {
+      background: rgba(33, 63, 125, 0.15);
+    }
   }
 
   svg {
@@ -69,10 +76,25 @@
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 
-  &:hover:not(:disabled) { background: rgba(33, 63, 125, 0.08); color: $primary; }
-  &.current  { background: $primary; color: $white; }
-  &:disabled { opacity: 0.35; cursor: not-allowed; }
-  &.arrow    { background: rgba(33, 63, 125, 0.08); color: $primary; }
+  &:hover:not(:disabled) {
+    background: rgba(33, 63, 125, 0.08);
+    color: $primary;
+  }
+
+  &.current {
+    background: $primary;
+    color: $white;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &.arrow {
+    background: rgba(33, 63, 125, 0.08);
+    color: $primary;
+  }
 }
 
 .ellipsis {

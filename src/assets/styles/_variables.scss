@@ -10,7 +10,7 @@ $topbar-height: 70px;
 $sidebar-width: 283px;
 
 // Add missing variables for Login
-$font-heading: 'Avenir Next', 'Work Sans', sans-serif;
+$font-heading: $font-primary;
 $text-muted: #545F7D;
 
 $shadow-dropdown: 0 4px 20px rgba(0, 0, 0, 0.08);

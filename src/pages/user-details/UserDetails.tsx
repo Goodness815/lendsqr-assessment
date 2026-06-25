@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Star } from "lucide-react";
 import { useUser } from "../../hooks/useUsers";
 import { ComingSoon } from "../../components/ui/coming-soon/ComingSoon";
+import { formatCurrency } from "../../utils/helpers";
 import s from "./UserDetails.module.scss";
 
 export function UserDetails() {
@@ -82,7 +83,7 @@ export function UserDetails() {
           <div className={s.divider} />
 
           <div className={s.balanceInfo}>
-            <h2>₦{user.accountBalance}</h2>
+            <h2>₦{formatCurrency(user.accountBalance)}</h2>
             <p>{user.accountNumber}/Providus Bank</p>
           </div>
         </div>
@@ -156,12 +157,12 @@ export function UserDetails() {
               <div className={s.field}>
                 <span className={s.label}>Monthly income</span>
                 <span className={s.value}>
-                  ₦{education.monthlyIncome[0]} - ₦{education.monthlyIncome[1]}
+                  ₦{formatCurrency(education.monthlyIncome[0])} - ₦{formatCurrency(education.monthlyIncome[1])}
                 </span>
               </div>
               <div className={s.field}>
                 <span className={s.label}>Loan repayment</span>
-                <span className={s.value}>₦{education.loanRepayment}</span>
+                <span className={s.value}>₦{formatCurrency(education.loanRepayment)}</span>
               </div>
             </div>
           </section>

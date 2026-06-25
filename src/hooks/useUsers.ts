@@ -6,7 +6,7 @@ import mockData from '../utils/mock-users-data.json';
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
-export interface UseUsersOptions {
+export type UseUsersOptions = {
   page: number;
   limit: number;
   search?: string;
@@ -30,41 +30,46 @@ export function useUsers(options?: UseUsersOptions) {
       try {
         setLoading(true);
         await delay(500);
-        
-        let data = [...(mockData as UserRecord[])];
 
-        if (options.search) {
-          const q = options.search.toLowerCase();
-          data = data.filter(u =>
-            u.userName.toLowerCase().includes(q) ||
-            u.email.toLowerCase().includes(q) ||
-            u.orgName.toLowerCase().includes(q)
-          );
+        let data = mockData as UserRecord[];
+
+        const hasSearch = !!options.search;
+        const hasFilters = options.filters && Object.values(options.filters).some(v => v);
+
+        // 1. Single-pass Filter
+        if (hasSearch || hasFilters) {
+          const q = options.search?.toLowerCase() || "";
+          
+          data = data.filter(u => {
+            // Search criteria
+            if (hasSearch) {
+              const matchesSearch = 
+                u.userName.toLowerCase().includes(q) ||
+                u.email.toLowerCase().includes(q) ||
+                u.orgName.toLowerCase().includes(q);
+              
+              if (!matchesSearch) return false;
+            }
+
+            // Filter criteria
+            if (hasFilters) {
+              const f = options.filters!;
+              if (f.organization && !u.orgName.toLowerCase().includes(f.organization.toLowerCase())) return false;
+              if (f.username && !u.userName.toLowerCase().includes(f.username.toLowerCase())) return false;
+              if (f.email && !u.email.toLowerCase().includes(f.email.toLowerCase())) return false;
+              if (f.phone && !String(u.phoneNumber).includes(f.phone)) return false;
+              if (f.status && u.status !== f.status) return false;
+              if (f.date && !String(u.createdAt).startsWith(f.date)) return false;
+            }
+
+            return true;
+          });
         }
 
-        if (options.filters) {
-          if (options.filters.organization) {
-            data = data.filter(u => u.orgName.toLowerCase().includes(options.filters!.organization.toLowerCase()));
-          }
-          if (options.filters.username) {
-            data = data.filter(u => u.userName.toLowerCase().includes(options.filters!.username.toLowerCase()));
-          }
-          if (options.filters.email) {
-            data = data.filter(u => u.email.toLowerCase().includes(options.filters!.email.toLowerCase()));
-          }
-          if (options.filters.phone) {
-            data = data.filter(u => String(u.phoneNumber).includes(options.filters!.phone));
-          }
-          if (options.filters.status) {
-            data = data.filter(u => u.status === options.filters!.status);
-          }
-          if (options.filters.date) {
-            data = data.filter(u => String(u.createdAt).startsWith(options.filters!.date));
-          }
-        }
-
+        // 2. Sort
         if (options.sortBy) {
-          data.sort((a, b) => {
+          // Spread to avoid mutating the original mockData array or the filtered result
+          data = [...data].sort((a, b) => {
             const valA = String(a[options.sortBy!]).toLowerCase();
             const valB = String(b[options.sortBy!]).toLowerCase();
             if (valA < valB) return options.sortOrder === "asc" ? -1 : 1;
@@ -90,11 +95,11 @@ export function useUsers(options?: UseUsersOptions) {
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    options?.page, 
-    options?.limit, 
-    options?.search, 
-    options?.sortBy, 
-    options?.sortOrder, 
+    options?.page,
+    options?.limit,
+    options?.search,
+    options?.sortBy,
+    options?.sortOrder,
     filterDeps
   ]);
 
@@ -119,7 +124,7 @@ export function useUser(id: string | undefined) {
 
         const found = (mockData as UserRecord[]).find(u => String(u.id) === String(id));
         if (!found) throw new Error(`User not found`);
-        
+
         setUser(found);
       } catch (err: unknown) {
         if (err instanceof Error) {

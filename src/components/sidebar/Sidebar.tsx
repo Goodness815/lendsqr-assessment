@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, BriefcaseBusiness } from "lucide-react";
-import { NAV_LINKS } from "../../utils/data";
+import { ChevronDown, LogOut } from "lucide-react";
+import briefcaseIcon from "../../assets/icons/briefcase.svg";
+import { NAV_LINKS } from "../../utils/sidebar-data";
+import { useAuth } from "../../hooks/useAuth";
 import s from "./Sidebar.module.scss";
 
 type SidebarProps = { open: boolean; onClose: () => void; }
@@ -9,6 +11,7 @@ type SidebarProps = { open: boolean; onClose: () => void; }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
   const location = useLocation();
+  const { logout } = useAuth();
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + "/");
 
   return (
@@ -18,7 +21,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       <aside className={`${s.sidebar} ${open ? s.open : ""}`}>
         <div className={s.inner}>
           <button className={s.switchOrg} data-testid="button-switch-org">
-            <BriefcaseBusiness size={16} />
+            <img src={briefcaseIcon} alt="" className={s.icon} />
             <span>Switch Organization</span>
             <ChevronDown size={16} />
           </button>
@@ -29,9 +32,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                 {section.title && (
                   <p className={s.sectionTitle}>{section.title}</p>
                 )}
-                {section.items.map((item) => {
-                  const Icon = item.icon;
-                  return (
+                {section.items.map((item) => (
                     <Link
                       key={item.href}
                       to={item.href}
@@ -39,15 +40,20 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                       onClick={onClose}
                       className={`${s.navItem} ${isActive(item.href) ? s.active : ""}`}
                     >
-                      <Icon size={16} />
+                      <img src={item.icon} alt="" className={s.icon} />
                       {item.label}
                     </Link>
-                  );
-                })}
+                  ))}
               </div>
             ))}
           </nav>
 
+          <div className={s.footer}>
+            <button className={s.logout} onClick={logout}>
+              <LogOut size={16} /> Logout
+            </button>
+            <p className={s.version}>v1.0.0</p>
+          </div>
         </div>
       </aside>
     </>

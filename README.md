@@ -1,77 +1,88 @@
-# React + TypeScript + Vite
+# Lendsqr Frontend Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application built as part of the Lendsqr Frontend Engineering assessment. This project implements a fully responsive dashboard for managing users, featuring complex filtering, sorting, pagination, and a simulated asynchronous API architecture.
 
-Currently, two official plugins are available:
+## 🚀 Features Implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Authentication (Login Page)
+- Secure, responsive login page styled precisely to Figma specifications.
+- Fully simulated authentication flow using Context API (`AuthContext`) and local storage, ensuring restricted access to the dashboard via a `<ProtectedRoute />` wrapper.
 
-## React Compiler
+### 2. Users Dashboard
+- **Robust Data Table:** Displays users from a simulated asynchronous JSON API consisting of 500 records. 
+- **Pagination:** Client-side pagination handling with dynamic UI and window/table scroll resetting.
+- **Advanced Filtering:** A custom, fully-functional dropdown filter menu that allows querying by Organization, Username, Email, Phone Number, Date, and Status.
+- **Sorting:** Clickable column headers (e.g. Organization, Email) to trigger ascending/descending data sorts.
+- **Debounced Search:** Global table search with a 1-second debounce (`useDebounce` hook) to ensure optimal rendering performance.
+- **Action Menus:** Dynamic overflow menus on rows (View Details, Blacklist, Activate) implemented using React Portals to prevent z-index clipping.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 3. User Details Page
+- Detailed breakdown of user profiles mapped exactly to the design guidelines.
+- Dynamic navigation tabs ("General Details", "Documents", "Bank Details", etc.)
+- Helper utility formatting for Dates and Nigerian Naira (₦) currency strings.
 
-Note: This will impact Vite dev & build performances.
+## 🛠️ Tech Stack & Tools
 
-## Expanding the ESLint configuration
+- **Framework:** [React 19](https://react.dev/) via [Vite](https://vitejs.dev/)
+- **Language:** TypeScript (Strict Mode)
+- **Routing:** React Router v7 (`react-router-dom`)
+- **Styling:** SCSS Modules (`.module.scss`) + Global mixins/variables for structural modularity.
+- **Icons:** Custom SVG Assets & [Lucide React](https://lucide.dev/)
+- **Testing:** [Vitest](https://vitest.dev/) + React Testing Library (JSDOM)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📂 Code Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+src/
+├── assets/         # Static assets (images, icons) and global SCSS files (_variables.scss, _mixins.scss)
+├── components/     # Reusable UI components
+│   ├── layouts/    # Global layouts (Topbar, Sidebar, Dashboard wrapper)
+│   ├── ui/         # Isolated atomic UI elements (Table, Pagination, ActionMenu)
+│   └── ScrollToTop.tsx # Route lifecycle helper
+├── context/        # React Context providers (AuthContext)
+├── hooks/          # Custom React hooks (useAuth, useDebounce, useUsers)
+├── pages/          # Full page components (Login, Users, UserDetails)
+├── types/          # TypeScript interface/type definitions
+├── utils/          # Helpers (formatters) and mock data JSON 
+├── App.tsx         # Root Router configuration
+└── main.tsx        # React DOM entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ How to Run Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
 
+1. **Navigate to the project directory:**
+   ```bash
+   cd lendsqr-assessment
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **View the app:**
+   Open `http://localhost:5173` in your browser. You can click "Log in" to bypass the simulated login screen and view the dashboard.
+
+## 🧪 Running Tests
+
+This project includes a comprehensive suite of unit tests built with Vitest and React Testing Library, testing core application flows such as routing, mocked API integrations, DOM interactions, and pagination.
+
+To execute the test suite in watch mode:
+```bash
+npm run test
+```
+
+To run a single pass check:
+```bash
+npx vitest run
 ```

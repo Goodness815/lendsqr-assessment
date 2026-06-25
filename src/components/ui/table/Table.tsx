@@ -2,12 +2,12 @@ import React from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import s from "./Table.module.scss";
 
-export interface Column<T> {
+export type Column<T> = {
   key: Extract<keyof T, string>;
   label: string;
 }
 
-interface TableProps<T> {
+type TableProps<T> = {
   columns: Column<T>[];
   data: T[];
   sortBy: string;
