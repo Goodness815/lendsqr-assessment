@@ -240,7 +240,6 @@ export default function Users() {
             id={menuState.id}
             top={menuState.top}
             right={menuState.right}
-            onClose={() => setMenuState(null)}
           >
             <button className={s.dropItem} onClick={() => navigate(`/users/${menuState.id}`)}>
               <Eye size={14} /> View Details

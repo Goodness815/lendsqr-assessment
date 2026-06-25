@@ -6,11 +6,10 @@ type ActionMenuProps = {
   id: string;
   top: number;
   right: number;
-  onClose: () => void;
   children: ReactNode;
 }
 
-export function ActionMenu({ id, top, right, onClose, children }: ActionMenuProps) {
+export function ActionMenu({ id, top, right, children }: ActionMenuProps) {
   return createPortal(
     <div
       className={s.dropMenu}

@@ -70,8 +70,9 @@ export function useUsers(options?: UseUsersOptions) {
         if (options.sortBy) {
           // Spread to avoid mutating the original mockData array or the filtered result
           data = [...data].sort((a, b) => {
-            const valA = String(a[options.sortBy!]).toLowerCase();
-            const valB = String(b[options.sortBy!]).toLowerCase();
+            const sortKey = options.sortBy as keyof UserRecord;
+            const valA = String(a[sortKey]).toLowerCase();
+            const valB = String(b[sortKey]).toLowerCase();
             if (valA < valB) return options.sortOrder === "asc" ? -1 : 1;
             if (valA > valB) return options.sortOrder === "asc" ? 1 : -1;
             return 0;
