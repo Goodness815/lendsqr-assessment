@@ -31,13 +31,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      localStorage.removeItem('isLoggedIn');
-      setIsAuthenticated(false);
-      navigate("/login", { replace: true });
-    }, 2000);
+    localStorage.removeItem('isLoggedIn');
+    setIsAuthenticated(false);
+    navigate("/login", { replace: true });
   };
 
   // Sync state if localStorage changes in another tab
