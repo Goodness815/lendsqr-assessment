@@ -1,0 +1,18 @@
+@use '../../../assets/styles/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  border-radius: 100px;
+  font-family: $font-primary;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &.Active      { background: $status-active-bg;      color: $status-active-text; }
+  &.Inactive    { background: $status-inactive-bg;    color: $status-inactive-text; }
+  &.Pending     { background: $status-pending-bg;     color: $status-pending-text; }
+  &.Blacklisted { background: $status-blacklisted-bg; color: $status-blacklisted-text; }
+}

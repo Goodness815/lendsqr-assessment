@@ -1,0 +1,143 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table, .skeletonTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.th {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: $white;
+  z-index: 10;
+}
+
+.thInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  transition: color 0.15s;
+
+  span {
+    font-family: $font-primary;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $text-muted;
+    transition: color 0.15s;
+  }
+
+  .sortIcon {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    color: rgba(33, 63, 125, 0.35);
+    transition: color 0.15s;
+  }
+
+  &:hover .sortIcon,
+  &:hover span { color: $teal; }
+
+  &.sortAsc  .sortIcon,
+  &.sortDesc .sortIcon { color: $teal; }
+}
+
+.emptyState {
+  padding: 64px 24px;
+  text-align: center;
+  font-family: $font-primary;
+  animation: fadeIn 0.3s ease both;
+
+  p {
+    font-size: 14px;
+    color: $text-muted;
+    margin-bottom: 12px;
+  }
+
+  button {
+    font-size: 13px;
+    color: $teal;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.15s;
+    &:hover { opacity: 0.75; }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// ── Skeleton Loader ────────────────────────────────────────────
+
+.skeletonTh {
+  padding: 16px 24px;
+  border-bottom: 1px solid $border-color;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  background: $white;
+  z-index: 10;
+}
+
+.skeletonThPill {
+  height: 10px;
+  border-radius: 6px;
+  background: rgba(33, 63, 125, 0.07);
+}
+
+.skeletonTd {
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(33, 63, 125, 0.05);
+  vertical-align: middle;
+}
+
+%shimmerBase {
+  background: linear-gradient(
+    90deg,
+    #f0f2f5 0px,
+    #e8ecf3 150px,
+    #f0f2f5 300px
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.skeletonCell {
+  @extend %shimmerBase;
+  height: 12px;
+  border-radius: 6px;
+}
+
+.skeletonCircle {
+  @extend %shimmerBase;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 auto;
+}

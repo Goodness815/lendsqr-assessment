@@ -24,6 +24,12 @@
   }
 }
 
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
 @mixin input-base {
   width: 100%;
   padding: 0 16px;
@@ -42,4 +48,11 @@
   border: none;
   cursor: pointer;
   font-family: $font-primary;
+}
+
+@mixin card {
+  background: $white;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }

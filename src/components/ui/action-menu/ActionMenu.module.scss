@@ -1,0 +1,18 @@
+@use '../../../assets/styles/variables' as *;
+
+.dropMenu {
+  position: fixed;
+  z-index: 9999;
+  background: $white;
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 160px;
+  box-shadow: $shadow-dropdown;
+  border: 1px solid rgba(84, 95, 125, 0.1);
+  animation: slideDown 0.18s ease both;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

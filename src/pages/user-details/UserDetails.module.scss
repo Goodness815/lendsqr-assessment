@@ -1,0 +1,304 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.container {
+  padding-bottom: 40px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  font-family: $font-primary;
+  font-size: 16px;
+  color: $text-muted;
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition: color 0.2s;
+  
+  &:hover { color: $primary; }
+}
+
+.headerActions {
+  @include flex-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-family: $font-primary;
+  font-size: 24px;
+  font-weight: 500;
+  color: $primary;
+}
+
+.actionBtns {
+  display: flex;
+  gap: 20px;
+}
+
+.blacklistBtn {
+  padding: 12px 16px;
+  border: 1px solid #E4033B;
+  border-radius: 8px;
+  background: none;
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #E4033B;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background: rgba(228, 3, 59, 0.05); }
+}
+
+.activateBtn {
+  padding: 12px 16px;
+  border: 1px solid $teal;
+  border-radius: 8px;
+  background: none;
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: $teal;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background: rgba(57, 205, 204, 0.05); }
+}
+
+// ── Profile Card ──────────────────────────────
+.profileCard {
+  @include card;
+  padding: 30px 30px 0;
+  margin-bottom: 30px;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+
+  @include mobile { gap: 20px; }
+}
+
+.avatarWrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(33, 63, 125, 0.16);
+  @include flex-center;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .avatarInitials {
+    font-family: $font-primary;
+    font-size: 36px;
+    font-weight: 500;
+    color: $primary;
+    text-transform: uppercase;
+  }
+}
+
+.basicInfo {
+  h2 {
+    font-family: $font-primary;
+    font-size: 22px;
+    font-weight: 500;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+  p {
+    font-family: $font-primary;
+    font-size: 14px;
+    color: $text-muted;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 80px;
+  background: rgba(84, 95, 125, 0.2);
+
+  @include mobile { display: none; }
+}
+
+.tierInfo {
+  p {
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-muted;
+    margin-bottom: 8px;
+  }
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  .starFilled { color: #E3B505; }
+  .starEmpty { color: #E3B505; opacity: 0.2; }
+}
+
+.balanceInfo {
+  h2 {
+    font-family: $font-primary;
+    font-size: 22px;
+    font-weight: 500;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+  p {
+    font-family: $font-primary;
+    font-size: 12px;
+    color: $text-muted;
+  }
+}
+
+// ── Tabs ──────────────────────────────────
+.tabs {
+  display: flex;
+  gap: 40px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include mobile { gap: 20px; }
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 10px 0;
+  font-family: $font-primary;
+  font-size: 16px;
+  color: rgba(0,0,0,0.8);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s;
+
+  &.active {
+    color: $teal;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      width: 120%;
+      height: 2px;
+      background: $teal;
+    }
+  }
+
+  &:hover:not(.active) { color: $primary; }
+}
+
+// ── Details Card ──────────────────────────
+.detailsCard {
+  @include card;
+  padding: 30px;
+}
+
+.section {
+  h3 {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 500;
+    color: $primary;
+    margin-bottom: 30px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+
+  @include desktop { grid-template-columns: repeat(4, 1fr); }
+  @include tablet  { grid-template-columns: repeat(2, 1fr); }
+  @include mobile  { grid-template-columns: 1fr; }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .label {
+    font-family: $font-primary;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  .value {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 500;
+    color: $text-muted;
+    word-break: break-word;
+  }
+}
+
+.sectionDivider {
+  border: none;
+  border-top: 1px solid rgba(33, 63, 125, 0.1);
+  margin: 30px 0;
+}
+
+// ── Loading & Error ──────────────────────
+.loadingState, .errorState {
+  padding: 40px;
+  text-align: center;
+  font-family: $font-primary;
+  color: $text-muted;
+
+  button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: $teal;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.skeletonHeader {
+  height: 200px;
+  background: rgba(33, 63, 125, 0.05);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.skeletonTabs {
+  height: 40px;
+  background: rgba(33, 63, 125, 0.05);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.skeletonBody {
+  height: 400px;
+  background: rgba(33, 63, 125, 0.05);
+  border-radius: 8px;
+}

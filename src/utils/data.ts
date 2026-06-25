@@ -1,14 +1,15 @@
 import {
-    LayoutDashboard, Users, UserCheck, CreditCard, GitBranch,
+ Users, UserCheck, CreditCard, GitBranch,
     PiggyBank, FileText, UserX, AlertTriangle, Building2, Package,
     Wallet, DollarSign, ArrowLeftRight, Briefcase, UserCog,
-    Receipt, BarChart2, Settings, Tag, ClipboardList
+    Receipt, BarChart2, Settings, Tag, ClipboardList,
+    HomeIcon
 } from "lucide-react";
 
 export const NAV_LINKS = [
     {
         items: [
-            { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+            { label: "Dashboard", icon: HomeIcon, href: "/dashboard" },
         ],
     },
     {

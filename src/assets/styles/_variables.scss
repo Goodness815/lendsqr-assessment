@@ -11,4 +11,16 @@ $sidebar-width: 283px;
 
 // Add missing variables for Login
 $font-heading: 'Avenir Next', 'Work Sans', sans-serif;
-$text-muted: rgba(84, 95, 125, 0.7);
+$text-muted: #545F7D;
+
+$shadow-dropdown: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+// Status badge colors
+$status-active-bg: rgba(57, 205, 204, 0.1);
+$status-active-text: #39CDCC;
+$status-inactive-bg: rgba(84, 95, 125, 0.1);
+$status-inactive-text: #545F7D;
+$status-pending-bg: rgba(233, 178, 0, 0.1);
+$status-pending-text: #E9B200;
+$status-blacklisted-bg: rgba(228, 3, 59, 0.1);
+$status-blacklisted-text: #E4033B;

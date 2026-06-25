@@ -4,15 +4,8 @@ import { LogIn } from './pages/login/LogIn';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { ComingSoon } from './components/ui/coming-soon/ComingSoon';
 import { AuthProvider } from './context/AuthContext';
-
-function Users() {
-  return (
-    <div>
-      <h1>Users</h1>
-      <p>Users list will be displayed here.</p>
-    </div>
-  );
-}
+import Users from './pages/users/Users';
+import { UserDetails } from './pages/user-details/UserDetails';
 
 function App() {
   return (
@@ -24,6 +17,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Navigate to="/users" replace />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/users/:id" element={<UserDetails />} />
             <Route path="*" element={<ComingSoon />} />
           </Route>
         </Route>

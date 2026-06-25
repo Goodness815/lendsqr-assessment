@@ -1,7 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import s from './ComingSoon.module.scss';
 
-export function ComingSoon() {
+interface ComingSoonProps {
+  title?: string;
+}
+
+export function ComingSoon({ title }: ComingSoonProps = {}) {
   const location = useLocation();
 
   // Format page name from URL slug
@@ -13,7 +17,7 @@ export function ComingSoon() {
   return (
     <div className={s.wrap}>
       <div className={s.icon} aria-hidden="true">🚧</div>
-      <h1 className={s.title}>{pageName}</h1>
+      <h1 className={s.title}>{title || pageName}</h1>
       <p className={s.message}>This section is coming soon.</p>
       <p className={s.sub}>We're working on it — check back later.</p>
     </div>
