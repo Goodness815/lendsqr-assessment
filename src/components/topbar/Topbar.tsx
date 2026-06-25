@@ -1,22 +1,14 @@
 import { Bell, Search, ChevronDown, Menu, X } from "lucide-react";
-import logoSvg from "@assets/logo_1782339066846.svg";
+import logo from "../../assets/images/logo.svg";
 import s from "./Topbar.module.scss";
 
-interface TopbarProps { sidebarOpen: boolean; onToggle: () => void; }
+type TopbarProps = { sidebarOpen: boolean; onToggle: () => void; }
 
 export default function Topbar({ sidebarOpen, onToggle }: TopbarProps) {
   return (
     <header className={s.topbar}>
       <div className={s.left}>
-        <button
-          className={s.hamburger}
-          onClick={onToggle}
-          data-testid="button-sidebar-toggle"
-          aria-label="Toggle menu"
-        >
-          {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-        <img src={logoSvg} alt="Lendsqr" className={s.logo} />
+        <img src={logo} alt="Lendsqr" className={s.logo} />
       </div>
 
       <div className={s.search}>
@@ -42,6 +34,14 @@ export default function Topbar({ sidebarOpen, onToggle }: TopbarProps) {
           </div>
           <span className={s.name}>Adedeji</span>
           <ChevronDown size={16} className={s.chevron} />
+        </button>
+        <button
+          className={s.hamburger}
+          onClick={onToggle}
+          data-testid="button-sidebar-toggle"
+          aria-label="Toggle menu"
+        >
+          {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
     </header>

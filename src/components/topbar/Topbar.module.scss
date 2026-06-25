@@ -3,7 +3,9 @@
 
 .topbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   height: $topbar-height;
   background: $white;
@@ -12,7 +14,9 @@
   padding: 0 30px;
   gap: 16px;
 
-  @include mobile { padding: 0 16px; }
+  @include mobile {
+    padding: 0 16px;
+  }
 }
 
 .left {
@@ -26,7 +30,6 @@
   display: none;
   width: 36px;
   height: 36px;
-  @include flex-center;
   border-radius: 6px;
   color: $primary;
   background: none;
@@ -35,9 +38,13 @@
   flex-shrink: 0;
   transition: background 0.15s;
 
-  &:hover { background: rgba(33, 63, 125, 0.06); }
+  &:hover {
+    background: rgba(33, 63, 125, 0.06);
+  }
 
-  @include tablet { display: flex; }
+  @include mobile {
+    @include flex-center;
+  }
 }
 
 .logo {
@@ -53,7 +60,9 @@
   align-items: center;
   margin: 0 24px;
 
-  @include tablet { display: none; }
+  @include tablet {
+    display: none;
+  }
 
   input {
     flex: 1;
@@ -68,8 +77,13 @@
     outline: none;
     background: $white;
 
-    &::placeholder { color: rgba(33, 63, 125, 0.5); }
-    &:focus { border-color: $teal; }
+    &::placeholder {
+      color: rgba(33, 63, 125, 0.5);
+    }
+
+    &:focus {
+      border-color: $teal;
+    }
   }
 
   button {
@@ -82,8 +96,13 @@
     border: none;
     cursor: pointer;
 
-    svg { color: $white; }
-    &:hover { background: $teal-hover; }
+    svg {
+      color: $white;
+    }
+
+    &:hover {
+      background: $teal-hover;
+    }
   }
 }
 
@@ -92,6 +111,10 @@
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
+
+  @include mobile {
+    gap: 15px
+  }
 }
 
 .docsLink {
@@ -100,7 +123,9 @@
   color: $primary;
   text-decoration: underline;
 
-  @include mobile { display: none; }
+  @include mobile {
+    display: none;
+  }
 }
 
 .bell {
@@ -140,7 +165,9 @@
     overflow: hidden;
     flex-shrink: 0;
 
-    svg { color: rgba(33, 63, 125, 0.6); }
+    svg {
+      color: rgba(33, 63, 125, 0.6);
+    }
   }
 
   .name {
@@ -149,11 +176,16 @@
     font-weight: 600;
     color: $primary;
 
-    @include mobile { display: none; }
+    @include mobile {
+      display: none;
+    }
   }
 
   .chevron {
     color: $primary;
-    @include mobile { display: none; }
+
+    @include mobile {
+      display: none;
+    }
   }
 }

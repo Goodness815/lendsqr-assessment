@@ -1,14 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
-
-function Dashboard() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard. The layout is successfully rendering child routes.</p>
-    </div>
-  );
-}
+import { LogIn } from './pages/login/LogIn';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { ComingSoon } from './components/ui/coming-soon/ComingSoon';
+import { AuthProvider } from './context/AuthContext';
 
 function Users() {
   return (
@@ -21,14 +16,19 @@ function Users() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
-        <Route path="*" element={<div>Page not found</div>} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Navigate to="/users" replace />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="*" element={<ComingSoon />} />
+          </Route>
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

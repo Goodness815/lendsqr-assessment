@@ -1,0 +1,44 @@
+@use '../../../assets/styles/variables' as *;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 40px 24px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.title {
+  font-family: $font-primary;
+  font-size: 22px;
+  font-weight: 600;
+  color: $primary;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-family: $font-primary;
+  font-size: 15px;
+  color: $text-muted;
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-family: $font-primary;
+  font-size: 13px;
+  color: rgba(84, 95, 125, 0.55);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

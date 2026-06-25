@@ -15,19 +15,21 @@
   z-index: 90;
   transition: transform 0.3s ease;
 
-  @include tablet {
+  @include mobile {
     transform: translateX(-100%);
     z-index: 200;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
 
-    &.open { transform: translateX(0); }
+    &.open {
+      transform: translateX(0);
+    }
   }
 }
 
 .overlay {
   display: none;
 
-  @include tablet {
+  @include mobile {
     display: block;
     position: fixed;
     top: $topbar-height;
@@ -61,12 +63,18 @@
   width: 100%;
   text-align: left;
 
-  svg { flex-shrink: 0; }
+  svg {
+    flex-shrink: 0;
+  }
 }
 
-.nav { flex: 1; }
+.nav {
+  flex: 1;
+}
 
-.section { margin-bottom: 8px; }
+.section {
+  margin-bottom: 8px;
+}
 
 .sectionTitle {
   padding: 8px 30px 4px;
@@ -98,12 +106,18 @@
   border-bottom: none;
   text-align: left;
 
-  svg { flex-shrink: 0; opacity: 0.6; }
+  svg {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
 
   &:hover {
     background: rgba(57, 205, 204, 0.04);
     color: $primary;
-    svg { opacity: 1; }
+
+    svg {
+      opacity: 1;
+    }
   }
 
   &.active {
@@ -111,7 +125,10 @@
     border-left-color: $teal;
     color: $primary;
     font-weight: 500;
-    svg { opacity: 1; }
+
+    svg {
+      opacity: 1;
+    }
   }
 }
 
@@ -126,7 +143,7 @@
   gap: 12px;
   font-family: $font-primary;
   font-size: 14px;
-  color: rgba(84, 95, 125, 0.7);
+  color: rgb(255, 95, 95);
   cursor: pointer;
   background: none;
   border: none;
@@ -134,7 +151,9 @@
   width: 100%;
   text-align: left;
 
-  &:hover { color: $primary; }
+  &:hover {
+    color: $primary;
+  }
 }
 
 .version {

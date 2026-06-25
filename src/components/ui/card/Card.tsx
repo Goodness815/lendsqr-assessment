@@ -1,8 +1,9 @@
+import type { ReactNode } from "react";
 import s from './Card.module.scss';
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-}
+export type CardProps = {
+  children: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>
 
 export function Card({ children, className, ...props }: CardProps) {
   return (
