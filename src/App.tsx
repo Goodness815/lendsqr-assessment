@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import { LogIn } from './pages/login/LogIn';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -17,6 +17,7 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
+            <Route path="/" element={<Navigate to="/users" replace />} />
             <Route path="/users" element={<Users />} />
             <Route path="/users/:id" element={<UserDetails />} />
             <Route path="*" element={<ComingSoon />} />
