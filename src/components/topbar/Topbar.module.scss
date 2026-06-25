@@ -1,0 +1,159 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: $topbar-height;
+  background: $white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);
+  @include flex-between;
+  padding: 0 30px;
+  gap: 16px;
+
+  @include mobile { padding: 0 16px; }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.hamburger {
+  display: none;
+  width: 36px;
+  height: 36px;
+  @include flex-center;
+  border-radius: 6px;
+  color: $primary;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(33, 63, 125, 0.06); }
+
+  @include tablet { display: flex; }
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.search {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+
+  @include tablet { display: none; }
+
+  input {
+    flex: 1;
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid $border-color;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    font-family: $font-primary;
+    font-size: 14px;
+    color: $primary;
+    outline: none;
+    background: $white;
+
+    &::placeholder { color: rgba(33, 63, 125, 0.5); }
+    &:focus { border-color: $teal; }
+  }
+
+  button {
+    height: 40px;
+    width: 56px;
+    background: $teal;
+    border-radius: 0 8px 8px 0;
+    @include flex-center;
+    flex-shrink: 0;
+    border: none;
+    cursor: pointer;
+
+    svg { color: $white; }
+    &:hover { background: $teal-hover; }
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.docsLink {
+  font-family: $font-primary;
+  font-size: 14px;
+  color: $primary;
+  text-decoration: underline;
+
+  @include mobile { display: none; }
+}
+
+.bell {
+  position: relative;
+  color: $primary;
+  @include flex-center;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  .dot {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background: #E4033B;
+    border-radius: 50%;
+    border: 2px solid $white;
+  }
+}
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(33, 63, 125, 0.15);
+    @include flex-center;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    svg { color: rgba(33, 63, 125, 0.6); }
+  }
+
+  .name {
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary;
+
+    @include mobile { display: none; }
+  }
+
+  .chevron {
+    color: $primary;
+    @include mobile { display: none; }
+  }
+}

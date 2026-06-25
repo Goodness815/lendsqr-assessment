@@ -1,0 +1,28 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.layout {
+  min-height: 100vh;
+  background: $bg-light;
+}
+
+.main {
+  padding-top: $topbar-height;
+  margin-left: $sidebar-width;
+  min-height: 100vh;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: margin-left 0.3s;
+
+  @include tablet { margin-left: 0; }
+}
+
+.content {
+  padding: 32px 40px;
+  min-width: 0;
+  max-width: 100%;
+
+  @include tablet  { padding: 24px 24px; }
+  @include mobile  { padding: 16px 16px; }
+}
