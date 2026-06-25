@@ -96,7 +96,7 @@ export default function Users() {
 
   // Scroll table to top when page changes
   useEffect(() => {
-    if (tableScrollRef.current) {
+    if (tableScrollRef.current && typeof tableScrollRef.current.scrollTo === 'function') {
       tableScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [page]);
