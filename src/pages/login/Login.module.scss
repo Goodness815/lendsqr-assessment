@@ -10,7 +10,7 @@
 
   @media (max-width: 900px) { 
     grid-template-columns: 1fr; 
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
   }
 }
 
@@ -22,10 +22,16 @@
 
   @include tablet { padding: 32px 24px; }
   @include mobile { padding: 24px 16px; }
-  @media (max-width: 900px) { min-height: auto; }
+  @media (max-width: 900px) { 
+    display: none; 
+  }
 }
 
-.logo { height: 30px; width: auto; }
+.logo { 
+  height: 45px; 
+  width: auto; 
+  align-self: flex-start;
+}
 
 .illustration {
   flex: 1;
